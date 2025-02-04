@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../core/supabase_service.dart';
+import '../core/supabase/supabase_service.dart';
 import '../widget/custom_button.dart';
 import '../widget/custom_text_feild.dart';
 import 'home.dart';

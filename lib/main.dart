@@ -5,7 +5,7 @@ import 'package:note/screens/register_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 
-import 'core/app_urls.dart';
+import 'core/constant/app_urls.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.grey[300],
           appBarTheme: AppBarTheme(

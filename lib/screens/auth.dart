@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-import '../core/supabase_service.dart';
+import '../core/supabase/supabase_service.dart';
 import 'home.dart';
 import 'login_screen.dart';
 

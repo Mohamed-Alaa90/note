@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:note/screens/register_screen.dart';
 
-import '../core/supabase_service.dart';
+import '../core/supabase/supabase_service.dart';
 import '../widget/custom_button.dart';
 import '../widget/custom_text_feild.dart';
 import 'home.dart';
@@ -31,12 +31,14 @@ class _LoginScreenState extends State<LoginScreen> {
     final error = await _supabaseService.login(_email.text, _password.text);
     if (error == null) {
       Navigator.pushReplacement(
+        // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(
           builder: (context) => Home(),
         ),
       );
     } else {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text("error"),
