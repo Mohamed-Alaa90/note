@@ -20,7 +20,7 @@ class CustomTextField extends StatelessWidget {
       cursorColor: Colors.black,
       controller: controller,
       decoration: InputDecoration(
-        enabledBorder: OutlineInputBorder(
+        enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.white10),
         ),
         focusedBorder: OutlineInputBorder(

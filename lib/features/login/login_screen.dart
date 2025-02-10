@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
+import '../../core/supabase/supabase_service.dart';
+import '../../shared/custom_button.dart';
+import '../../shared/custom_text_feild.dart';
+import '../note/note_screen.dart';
+import '../register/register_screen.dart';
 
-import '../core/supabase/supabase_service.dart';
-import '../widget/custom_button.dart';
-import '../widget/custom_text_feild.dart';
-import 'home.dart';
-import 'login_screen.dart';
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
-
-  static const String route = "register";
+  static const String route = "login";
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final _email = TextEditingController();
   final _password = TextEditingController();
   final SupabaseService _supabaseService = SupabaseService();
@@ -27,19 +26,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.dispose();
   }
 
-  void _register() async {
-    final error = await _supabaseService.register(_email.text, _password.text);
+  void _login() async {
+    final error = await _supabaseService.login(_email.text, _password.text);
     if (error == null) {
       Navigator.pushReplacement(
+        // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(
-          builder: (_) => Home(),
+          builder: (context) => const NoteScreen(),
         ),
       );
     } else {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("data"),
+        const SnackBar(
+          content: Text("error"),
         ),
       );
     }
@@ -56,23 +57,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
-                  "Register",
+                const Text(
+                  "Login",
                   style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 30,
-                    fontWeight: FontWeight.w900,
-                  ),
+                      color: Colors.black54,
+                      fontSize: 30,
+                      fontWeight: FontWeight.w900),
                   textAlign: TextAlign.end,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Icon(
+                const Icon(
                   Icons.lock,
                   size: 150,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 CustomTextField(
@@ -81,7 +81,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   hintText: "email",
                   icon: Icons.email,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 CustomTextField(
@@ -90,21 +90,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   hintText: "password",
                   icon: Icons.password,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 CustomButton(
-                  onPressed: () => _register(),
-                  name: "Register",
+                  onPressed: () => _login(),
+                  name: "Login",
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 TextButton(
-                  onPressed: () =>
-                      Navigator.popAndPushNamed(context, LoginScreen.route),
+                  onPressed: () => Navigator.popAndPushNamed(
+                    context,
+                    RegisterScreen.route,
+                  ),
                   child: Text(
-                    "Do you have account? Login",
+                    "Don't have an account? Register",
                     style: TextStyle(
                       color: Colors.grey[500],
                     ),

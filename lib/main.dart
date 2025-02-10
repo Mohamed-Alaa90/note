@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:note/screens/auth.dart';
-import 'package:note/screens/login_screen.dart';
-import 'package:note/screens/register_screen.dart';
+
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 
 import 'core/constant/app_urls.dart';
+import 'features/auth/auth.dart';
+import 'features/login/login_screen.dart';
+import 'features/register/register_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +14,7 @@ void main() async {
   await Supabase.initialize(url: ApiUrls.url, anonKey: ApiUrls.anon);
 
   runApp(
-    MyApp(),
+    const MyApp(),
   );
 }
 
@@ -31,9 +32,9 @@ class MyApp extends StatelessWidget {
           )),
       initialRoute: Auth.route,
       routes: {
-        RegisterScreen.route: (context) => RegisterScreen(),
-        LoginScreen.route: (context) => LoginScreen(),
-        Auth.route: (context) => Auth(),
+        RegisterScreen.route: (context) => const RegisterScreen(),
+        LoginScreen.route: (context) => const LoginScreen(),
+        Auth.route: (context) => const Auth(),
       },
     );
   }
